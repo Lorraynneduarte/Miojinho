@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Estou terminando com você</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(135deg, #ff9a9e, #fad0c4);
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+        h1 {
+            font-size: 3.5rem;
+            color: #ffffff;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+            margin-bottom: 20px;
+        }
+        .buttons {
+            margin-top: 20px;
+        }
+        button {
+            font-size: 1.5rem;
+            padding: 15px 30px;
+            margin: 10px;
+            border: none;
+            border-radius: 30px;
+            cursor: pointer;
+            transition: transform 0.3s, background-color 0.3s;
+            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
+        }
+        #agree {
+            background-color: #ff6b6b;
+            color: white;
+        }
+        #agree:hover {
+            background-color: #e63946;
+            transform: scale(1.1);
+        }
+        #retry {
+            background-color: #6c757d;
+            color: white;
+            position: absolute;
+            cursor: default;
+        }
+        #retry:hover {
+            cursor: not-allowed;
+        }
+        .broken-heart {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 15rem;
+            color: #ff1744;
+            opacity: 0;
+            animation: appear 2s ease-in-out forwards;
+            text-shadow: 4px 4px 6px rgba(0, 0, 0, 0.3);
+        }
+        @keyframes appear {
+            0% {
+                transform: translate(-50%, -50%) scale(0.5);
+                opacity: 0;
+            }
+            100% {
+                transform: translate(-50%, -50%) scale(1);
+                opacity: 1;
+            }
+        }
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2.5rem;
+            }
+            button {
+                font-size: 1.2rem;
+                padding: 10px 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <h1>Estou terminando com você, está de acordo?</h1>
+    <div class="buttons">
+        <button id="agree">Sim, estou de acordo então acabou</button>
+        <button id="retry">Não, vamos tentar novamente</button>
+    </div>
+
+    <script>
+        const agreeButton = document.getElementById('agree');
+        const retryButton = document.getElementById('retry');
+
+        // Disable "retry" button functionality
+        retryButton.addEventListener('mouseover', () => {
+            const x = Math.random() * (window.innerWidth - retryButton.offsetWidth);
+            const y = Math.random() * (window.innerHeight - retryButton.offsetHeight);
+            retryButton.style.left = `${x}px`;
+            retryButton.style.top = `${y}px`;
+        });
+
+        // Show broken heart when "agree" is clicked
+        agreeButton.addEventListener('click', () => {
+            const brokenHeart = document.createElement('div');
+            brokenHeart.textContent = '💔';
+            brokenHeart.className = 'broken-heart';
+            document.body.appendChild(brokenHeart);
+        });
+    </script>
+</body>
+</html>
