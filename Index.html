@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quer casar comigo?</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+            background-color: #ffe4e1;
+            overflow: hidden;
+        }
+        h1 {
+            margin-top: 20vh;
+            font-size: 3rem;
+            color: #ff69b4;
+        }
+        .buttons {
+            margin-top: 20px;
+        }
+        button {
+            font-size: 1.5rem;
+            padding: 10px 20px;
+            margin: 10px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        #yes {
+            background-color: #32cd32;
+            color: white;
+        }
+        #no {
+            background-color: #ff6347;
+            color: white;
+            position: absolute;
+        }
+        .heart {
+            position: absolute;
+            color: red;
+            font-size: 2rem;
+            animation: float 3s infinite ease-in-out;
+        }
+        .laughing {
+            position: absolute;
+            color: #ffd700;
+            font-size: 2rem;
+            animation: float 2s infinite ease-in-out;
+        }
+        @keyframes float {
+            0% {
+                transform: translateY(0);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-100vh);
+                opacity: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <h1>Quer casar comigo?</h1>
+    <div class="buttons">
+        <button id="yes">SIM</button>
+        <button id="no">NÃO</button>
+    </div>
+
+    <script>
+        const noButton = document.getElementById('no');
+        const yesButton = document.getElementById('yes');
+
+        // Function to make the "NÃO" button move
+        noButton.addEventListener('mouseover', () => {
+            const x = Math.random() * (window.innerWidth - noButton.offsetWidth);
+            const y = Math.random() * (window.innerHeight - noButton.offsetHeight);
+            noButton.style.left = `${x}px`;
+            noButton.style.top = `${y}px`;
+
+            // Create laughing face near the button
+            const laughingFace = document.createElement('div');
+            laughingFace.textContent = '😂';
+            laughingFace.className = 'laughing';
+            laughingFace.style.left = `${x + 20}px`;
+            laughingFace.style.top = `${y}px`;
+            document.body.appendChild(laughingFace);
+
+            setTimeout(() => {
+                laughingFace.remove();
+            }, 2000);
+        });
+
+        // Function to show hearts when "SIM" is clicked
+        yesButton.addEventListener('click', () => {
+            for (let i = 0; i < 20; i++) {
+                const heart = document.createElement('div');
+                heart.textContent = '❤️';
+                heart.className = 'heart';
+                heart.style.left = `${Math.random() * window.innerWidth}px`;
+                heart.style.top = `${Math.random() * window.innerHeight}px`;
+                document.body.appendChild(heart);
+
+                setTimeout(() => {
+                    heart.remove();
+                }, 3000);
+            }
+        });
+    </script>
+</body>
+</html>
